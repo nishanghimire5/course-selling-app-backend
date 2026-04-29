@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
 
-function auth(req,res,next){
+function adminAuth(req,res,next){
 const authHeader = req.headers.authorization;
 if(!authHeader || !authHeader.startsWith("Bearer ")){
    return res.status(401).json({
@@ -10,7 +10,7 @@ if(!authHeader || !authHeader.startsWith("Bearer ")){
 const token = authHeader.split(" ")[1];
 
 try{
-const decoded = jwt.verify(token,(process.env.JWT_SECRET));
+const decoded = jwt.verify(token,(process.env.JWT_ADMIN_SECRET));
 req.id = decoded.id
 next()
 }
@@ -23,4 +23,4 @@ res.status(500).json({
 }
 
 
-module.exports = {auth}
+module.exports = {adminAuth}

@@ -5,7 +5,7 @@ const courseSchema = new mongoose.Schema({
     price:{type:Number},
     imageUrl:{type:String},
     creatorId:{type:mongoose.Schema.Types.ObjectId,
-        ref:"Admin"
+        ref:"Admin",required:true
     }
 },{ timestamps: true })
 
